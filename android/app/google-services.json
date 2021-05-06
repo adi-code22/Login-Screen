@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "118396487420",
-    "project_id": "login-e14dd",
-    "storage_bucket": "login-e14dd.appspot.com"
+    "project_number": "970271030659",
+    "project_id": "adith-intern",
+    "storage_bucket": "adith-intern.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:118396487420:android:129d2492d2997da1bb7979",
+        "mobilesdk_app_id": "1:970271030659:android:1f1c6ebaf960ee616a8ab6",
         "android_client_info": {
           "package_name": "com.example.login_screen"
         }
       },
       "oauth_client": [
         {
-          "client_id": "118396487420-ev0cpql2n8t6fdd9lgos7sem4hjo4epk.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.login_screen",
-            "certificate_hash": "a1a8105d661557a6e996cbeb3dce47ac90b889df"
-          }
-        },
-        {
-          "client_id": "118396487420-ne4raqduqa16q010gcenvhtn6grpdof1.apps.googleusercontent.com",
+          "client_id": "970271030659-6am9dp1hi6e70qlu9udme40piv8d9n8f.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCvlJ-rL-e870-uj4iP32CUrv01HQcGa5Q"
+          "current_key": "AIzaSyAqqty0Yi_iRO2gjGgjKDUuwgbmUx81ARI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "118396487420-ne4raqduqa16q010gcenvhtn6grpdof1.apps.googleusercontent.com",
+              "client_id": "970271030659-6am9dp1hi6e70qlu9udme40piv8d9n8f.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

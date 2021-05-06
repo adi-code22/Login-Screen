@@ -23,7 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_auth: 
+  firebase_auth: ^1.1.3
   firebase_core: ^1.1.0
   pinput: ^1.2.0
 

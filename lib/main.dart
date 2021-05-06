@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:login_screen/profile.dart';
 
 void main() async {
-   WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp();
-  
+
   runApp(MyApp());
 }
 
@@ -18,20 +18,18 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-    String uid;
+  String uid;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-       
-       
-         'profile':(context)=>Profile(),
+        'profile': (context) => Profile(),
       },
       debugShowCheckedModeBanner: false,
       home: Login(),
     );
   }
-  
+
   // @override
   // void initState() {
   //   // TODO: implement initState

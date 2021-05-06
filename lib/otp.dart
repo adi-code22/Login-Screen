@@ -4,15 +4,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:login_screen/profile.dart';
 import 'package:pinput/pin_put/pin_put.dart';
+
 class OTPScreen extends StatefulWidget {
-    final String phone;
+  final String phone;
   OTPScreen(this.phone);
+
   @override
   _OTPScreenState createState() => _OTPScreenState();
 }
 
 class _OTPScreenState extends State<OTPScreen> {
-   final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
   String _verificationCode;
   final TextEditingController _pinPutController = TextEditingController();
   final FocusNode _pinPutFocusNode = FocusNode();
@@ -23,9 +25,10 @@ class _OTPScreenState extends State<OTPScreen> {
       color: const Color.fromRGBO(126, 203, 224, 1),
     ),
   );
-  
+
   @override
   Widget build(BuildContext context) {
+    //FirebaseAuth.instance.setSettings(appVerificationDisabledForTesting: true);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -66,41 +69,45 @@ class _OTPScreenState extends State<OTPScreen> {
                   style: TextStyle(fontSize: 15),
                 ),
               ),
-               Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: PinPut(
-              fieldsCount: 6,
-              textStyle: const TextStyle(fontSize: 25.0, color: Colors.white),
-              eachFieldWidth: 50.0,
-              eachFieldHeight: 55.0,
-              focusNode: _pinPutFocusNode,
-              controller: _pinPutController,
-              submittedFieldDecoration: pinPutDecoration,
-              selectedFieldDecoration: pinPutDecoration,
-              followingFieldDecoration: pinPutDecoration,
-              pinAnimationType: PinAnimationType.fade,
-              onSubmit: (pin) async {
-                try {
-                  await FirebaseAuth.instance
-                      .signInWithCredential(PhoneAuthProvider.credential(
-                          verificationId: _verificationCode, smsCode: pin))
-                      .then((value) async {
-                    if (value.user != null) {
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => Profile()),
-                          (route) => false);
+              Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: PinPut(
+                  fieldsCount: 6,
+                  textStyle:
+                      const TextStyle(fontSize: 25.0, color: Colors.white),
+                  eachFieldWidth: 50.0,
+                  eachFieldHeight: 55.0,
+                  focusNode: _pinPutFocusNode,
+                  controller: _pinPutController,
+                  submittedFieldDecoration: pinPutDecoration,
+                  selectedFieldDecoration: pinPutDecoration,
+                  followingFieldDecoration: pinPutDecoration,
+                  pinAnimationType: PinAnimationType.fade,
+                  onSubmit: (pin) async {
+                    try {
+                      // FirebaseAuth.instance
+                      //     .setSettings(appVerificationDisabledForTesting: true);
+                      await FirebaseAuth.instance
+                          .signInWithCredential(PhoneAuthProvider.credential(
+                              verificationId: _verificationCode, smsCode: pin))
+                          .then((value) async {
+                        if (value.user != null) {
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Profile()),
+                              (route) => false);
+                        }
+                      });
+                    } catch (e) {
+                      print("Error" + e);
+                      FocusScope.of(context).unfocus();
+                      // _scaffoldkey.currentState
+                      //     .showSnackBar(SnackBar(content: Text('invalid OTP')));
                     }
-                  });
-                } catch (e) {
-                  print("Error");
-                  FocusScope.of(context).unfocus();
-                  // _scaffoldkey.currentState
-                  //     .showSnackBar(SnackBar(content: Text('invalid OTP')));
-                }
-              },
-            ),
-          )
+                  },
+                ),
+              )
               // Padding(
               //   padding: const EdgeInsets.only(
               //     top: 20,
@@ -131,7 +138,7 @@ class _OTPScreenState extends State<OTPScreen> {
               //         width: 2,
               //       ),
               //       OTPDigitTextFieldBox(first: true, last: false),
-                    
+
               //     ],
               //   ),
               // ),
@@ -155,7 +162,7 @@ class _OTPScreenState extends State<OTPScreen> {
                 padding: const EdgeInsets.only(top: 20.0),
                 child: ElevatedButton(
                   onPressed: () {
-                  _verifyPhone();
+                    _verifyPhone();
                   },
                   child: Text(
                     " VERIFY AND CONTINUE",
@@ -174,7 +181,7 @@ class _OTPScreenState extends State<OTPScreen> {
       ),
     );
   }
-  
+
   _verifyPhone() async {
     await FirebaseAuth.instance.verifyPhoneNumber(
         phoneNumber: '+91${widget.phone}',
